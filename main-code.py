@@ -201,3 +201,6 @@ class RepeatBattles:
 jason = Character("Jason", "swordsman", 1, 1, "vertical slash", "side slash", "diagonal slash")
 ben = Character("Ben", "swordsman", 1, 1, "vertical slash", "side slash", "diagonal slash")
 RepeatBattles(jason, ben, Battle(jason, ben)).repeat_three()
+
+
+1234
