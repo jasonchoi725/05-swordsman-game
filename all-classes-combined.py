@@ -1,33 +1,3 @@
-# class Person:
-#     intro = "안녕하세요."
-#     def __init__(self, name, age, school):
-#         self.name = name
-#         self.age = age
-#         self.school = school
-#
-#     def say_hello(self):
-#         print("{intro} 저는 {name}입니다. 제 나이는 {age}입니다. 저는 {school}을 다닙니다.".format(intro=self.intro, name=self.name, age=self.age, school=self.school))
-#
-# i = Person("Jason", "29", "Yonsei University")
-# i.say_hello()
-
-
-# class Circle:
-#     pi = 3.14
-#
-#     def __init__(self, r):
-#         self.r = r
-#         print(self.pi)
-#         print(self.r)
-#
-#     def surface_area(self):
-#         return (self.pi)*(self.r*self.r)
-#
-#     def circumference(self):
-#         return 2*(self.pi)*self.r
-#
-# a = Circle(5)
-
 import random
 
 
@@ -180,8 +150,7 @@ class Battle:
                 print("player2 wins by", total_damage1, "<", total_damage2)
                 return 0
         else:
-            print(1)
-            # Battle(jason, ben).fight()
+            Battle(jason, ben).fight()
 
 
 
@@ -242,10 +211,6 @@ class RepeatBattles:
             # # print(self.Battle.player_2_skill_damage())
 
 
-
-# jason = Character("Jason", "swordsman", 1, 1, "Vertical slash", "Side slash", "Diagonal slash")
-# ben = Character("Ben", "swordsman", 1, 1, "Vertical slash", "Side slash", "Diagonal slash")
-# boss1 = Character("Boss", "swordsman", 2, 2, "Vertical slash", "Side slash", "Diagonal slash")
 #
 # RepeatBattles(ben, jason, Battle(ben, jason)).repeat_three()
 # print("----------------------------------")
@@ -253,111 +218,175 @@ class RepeatBattles:
 
 import numpy as np
 
-input("마운틴 던전을 소환하려면 m을 입력하세요 ----> ")
-print("마운틴 던전을 소환합니다.")
-A = np.full((30,10), "^")
-print(A)
-print("--------------------------")
-input("던전 보스몹들을 소환하려면 d를 입력하세요 ----> ")
-print("던전 보스몹들을 소환합니다. 숫자 7, 8, 9가 보스몹들입니다.")
-A[18,2] = 7
-A[19,2] = 7
-A[20,2] = 7
-A[18,3] = 7
-A[19,3] = 7
-A[20,3] = 7
-A[18,4] = 7
-A[19,4] = 7
-A[20,4] = 7
-A[18,5] = 7
-A[19,5] = 7
-A[20,5] = 7
-A[23,6] = 8
-A[24,6] = 8
-A[25,6] = 8
-A[23,7] = 8
-A[24,7] = 8
-A[25,7] = 8
-A[23,8] = 8
-A[24,8] = 8
-A[25,8] = 8
-A[29,9] = 9
-print(A)
-print("--------------------------")
-input("유저 캐릭터를 만드려면 c를 입력하세요 ----> ")
-print("캐릭터를 소환합니다. 숫자 1이 유저 캐릭터입니다.")
-A[0,0] = 1
-print(A)
-print("--------------------------")
+class Map:
+    def __init__(self):
+    #     # self.vertical = vertical
+    #     # self.horizontal = horizontal
+    #     print("게임을 시작합니다.")
+        pass
 
-def move(A):
-    a = input("움직일 방향의 번호를 입력하세요. 1.w 2.s 3.a 4.d ----> ")
-    if a == "w":
-        print("위로 한칸 움직였습니다.")
-        # print("Moving player 1 to the right - step 1: find 2")
-        a = np.where(A == "1")
-        # print(a)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 2: Change 2 to 1")
-        A[a] = "^"
-        # print(A)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
-        # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
-        up = (a[0]-1, a[1])
-        A[up] = 1
+    def print_map(self):
+        print(Map().create_map())
+
+    def create_map(self):
+        v = int(input("원하는 맵의 세로 길이를 입력하세요 (<21) ----> "))
+        h = int(input("원하는 맵의 가로 길이를 입력하세요 (<11) ----> "))
+        A = np.full((v, h), "^")
+        print("마운틴 던전 맵이 소환 되었습니다.")
         print(A)
+        return A
 
-    elif a == "s":
-        print("아래로 한칸 움직였습니다.")
-        # print("Moving player 1 to the right - step 1: find 2")
-        a = np.where(A == "1")
-        # print(a)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 2: Change 2 to 1")
-        A[a] = "^"
-        # print(A)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
-        # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
-        down = (a[0]+1, a[1])
-        A[down] = 1
+    def create_monsters(self, map):
+        self.map = map
+        input("던전 보스몹을 소환하려면 아무 키를 누르세요.")
+        print("던전 보스몹들을 소환합니다. 숫자 7, 8, 9가 보스몹들입니다.")
+        self.map[10,2] = 6
+        self.map[11,2] = 6
+        self.map[12,2] = 6
+        self.map[10,3] = 6
+        self.map[11,3] = 6
+        self.map[12,3] = 6
+        self.map[10,4] = 6
+        self.map[11,4] = 6
+        self.map[12,4] = 6
+        self.map[10,5] = 6
+        self.map[11,5] = 6
+        self.map[12,5] = 6
+        self.map[15,6] = 8
+        self.map[16,6] = 8
+        self.map[17,6] = 8
+        self.map[15,7] = 8
+        self.map[16,7] = 8
+        self.map[17,7] = 8
+        self.map[15,8] = 8
+        self.map[16,8] = 8
+        self.map[17,8] = 8
+        self.map[19,9] = 9
+        print(self.map)
+        return self.map
+
+    def create_user(self, map):
+        self.map = map
+        input("유저 캐릭터를 소환하려면 아무 키를 누르세요.")
+        print("유저 캐릭터를 소환합니다. 숫자 1이 유처 캐릭터입니다.")
+        self.map[0, 0] = 1
+        print(self.map)
+        return self.map
+
+
+
+
+
+# Map().print_map()
+
+# A = Map().create_monsters(Map.create_map())
+# print(A)
+
+# input("마운틴 던전을 소환하려면 m을 입력하세요 ----> ")
+# print("마운틴 던전을 소환합니다.")
+# A = np.full((30,10), "^")
+# print(A)
+# print("--------------------------")
+# input("던전 보스몹들을 소환하려면 d를 입력하세요 ----> ")
+
+# print(A)
+# print("--------------------------")
+# input("유저 캐릭터를 만드려면 c를 입력하세요 ----> ")
+# print("캐릭터를 소환합니다. 숫자 1이 유저 캐릭터입니다.")
+# A[0,0] = 1
+# print(A)
+# print("--------------------------")
+
+
+class Move:
+    def __init__(self, map):
+        self.map = map
+
+
+    def move(self):
+        a = input("움직일 방향의 번호를 입력하세요. 1.w 2.s 3.a 4.d ----> ")
+        if a == "w":
+            print("위로 한칸 움직였습니다.")
+            # print("Moving player 1 to the right - step 1: find 2")
+            a = np.where(self.map == "1")
+            # print(a)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 2: Change 2 to 1")
+            self.map[a] = "^"
+            # print(A)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
+            # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
+            up = (a[0]-1, a[1])
+            self.map[up] = 1
+            print(self.map)
+
+        elif a == "s":
+            print("아래로 한칸 움직였습니다.")
+            # print("Moving player 1 to the right - step 1: find 2")
+            a = np.where(self.map == "1")
+            # print(a)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 2: Change 2 to 1")
+            self.map[a] = "^"
+            # print(A)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
+            # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
+            down = (a[0]+1, a[1])
+            self.map[down] = 1
+            print(self.map)
+
+        elif a == "a":
+            print("왼쪽으로 한칸 움직였습니다.")
+            # print("Moving player 1 to the right - step 1: find 2")
+            a = np.where(self.map == "1")
+            # print(a)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 2: Change 2 to 1")
+            self.map[a] = "^"
+            # print(A)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
+            # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
+            left = (a[0], a[1]-1)
+            self.map[left] = 1
+            print(self.map)
+
+        elif a == "d":
+            print("오른쪽으로 한칸 움직였습니다.")
+            # print("Moving player 1 to the right - step 1: find 2")
+            a = np.where(self.map == "1")
+            # print(a)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 2: Change 2 to 1")
+            self.map[a] = "^"
+            # print(A)
+            # print("--------------------------")
+            # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
+            # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
+            right = (a[0], a[1]+1)
+            self.map[right] = 1
+            print(self.map)
+
+        else:
+            print("유효하지 않은 움직임입니다. 다시 입력해주세요.")
+            print(self.map)
+            Move(self.map).move()
+
+
+# 캐릭터 생성
+jason = Character("Jason", "swordsman", 1, 1, "Vertical slash", "Side slash", "Diagonal slash")
+ben = Character("Ben", "swordsman", 1, 1, "Vertical slash", "Side slash", "Diagonal slash")
+boss1 = Character("Boss", "swordsman", 2, 2, "Vertical slash", "Side slash", "Diagonal slash")
+# 게임 시작
+A = Map().create_user(Map().create_monsters(Map().create_map()))
+a = np.where(A != "^")
+b = (np.delete(a[0],0), np.delete(a[1],0))
+while True:
+    Move(A).move()
+    if "1" in A[b]:
+        RepeatBattles(ben, jason, Battle(ben, jason)).repeat_three()
+        c = np.where(A != "^")
+        b = (np.delete(c[0], 0), np.delete(c[1], 0))
         print(A)
-
-    elif a == "a":
-        print("왼쪽으로 한칸 움직였습니다.")
-        # print("Moving player 1 to the right - step 1: find 2")
-        a = np.where(A == "1")
-        # print(a)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 2: Change 2 to 1")
-        A[a] = "^"
-        # print(A)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
-        # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
-        left = (a[0], a[1]-1)
-        A[left] = 1
-        print(A)
-
-    if a == "d":
-        print("오른쪽으로 한칸 움직였습니다.")
-        # print("Moving player 1 to the right - step 1: find 2")
-        a = np.where(A == "1")
-        # print(a)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 2: Change 2 to 1")
-        A[a] = "^"
-        # print(A)
-        # print("--------------------------")
-        # print("Moving player 1 to the right - step 3: Change a value on the right to 2")
-        # https://moonbooks.org/Articles/How-to-extract-a-small-matrix-by-selecting-neighbors-for-a-given-index-using-numpy-in-python-/
-        right = (a[0], a[1]+1)
-        A[right] = 1
-        print(A)
-
-    else:
-        move(A)
-
-for i in range(100):
-    move(A)
